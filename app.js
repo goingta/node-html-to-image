@@ -10,9 +10,9 @@ const yourSecretKey = 'gthti';
 
 const validKey = (requiredKey) => {
     return (req, res, next) => {
-      const queryKey = req.query.key;
+      const headerKey = req.headers['x-api-key'];
   
-      if (queryKey && queryKey === requiredKey) {
+      if (headerKey && headerKey === requiredKey) {
         next(); // 如果 key 匹配，继续下一个中间件或路由处理
       } else {
         res.status(403).send('Forbidden: Invalid key');
